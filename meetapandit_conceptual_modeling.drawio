@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" modified="2024-05-27T00:41:16.576Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="gBwL8bplFq-wS4lM2nu_" version="24.2.5" type="device">
+  <diagram name="Page-1" id="xokW5G8OKgGA-57HJoIt">
+    <mxGraphModel dx="1194" dy="511" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-19" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="27.5" y="220" width="402.5" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-3" value="NYC Bike-sharing Historical Trip data Analysis" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="130" y="20" width="530" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-1" value="" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="15" y="390" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-4" value="" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="212.5" y="390" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-10" value="Avg. distance of rides" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="412.5" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-11" value="Number of rides" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="492.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-12" value="Time of day for rides" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="295" y="432.5" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-13" value="" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="15" y="642.5" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-14" value="Popular Stations from where rides are booked" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="682.5" width="65" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-15" value="" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="212.5" y="642.5" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-16" value="Places where rides end" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="295" y="702.5" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-21" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.005;exitY=0.63;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="45bsNxDg4tGoeu-GaeaL-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="204" y="260.24" as="sourcePoint" />
+            <mxPoint x="453.75" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-22" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.995;exitY=0.63;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="45bsNxDg4tGoeu-GaeaL-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="253.5" y="260.24" as="sourcePoint" />
+            <mxPoint x="139.75" y="365" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-23" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="45bsNxDg4tGoeu-GaeaL-13" target="45bsNxDg4tGoeu-GaeaL-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="83.75" y="630" as="sourcePoint" />
+            <mxPoint x="129.75" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-25" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="45bsNxDg4tGoeu-GaeaL-15" target="45bsNxDg4tGoeu-GaeaL-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="139.75" y="618" as="sourcePoint" />
+            <mxPoint x="139.75" y="595" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-26" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.csv_file;" vertex="1" parent="1">
+          <mxGeometry x="204.75" y="230" width="59" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-27" value="csv files" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="83.75" y="236.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-28" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="515" y="220" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-29" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="675" y="220" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-30" value="Location" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="322.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-31" value="Date" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="675" y="322" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-32" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="515" y="410" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-33" value="Pricing and plans" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="517.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-34" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="685" y="402.5" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-35" value="system_notifications" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="665" y="517.5" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-36" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="25" y="140" width="400" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-37" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Metrics&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="185" y="155" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-38" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="442.5" y="140" width="322.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-39" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Dimensions&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="575" y="155" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-40" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Data Source: Historical Trip Data&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="27.5" y="80" width="392.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="45bsNxDg4tGoeu-GaeaL-41" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Data Source: Real-time data feed&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="442.5" y="80" width="317.5" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
