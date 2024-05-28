@@ -58,11 +58,13 @@ Historical Citibike trip data : https://citibikenyc.com/system-data
 - Avg trip per day/week/month? Depending on who is the audience for the visualization
 - What time of the day were the trips taken
 - What are the most popular stations?
+  
 **Tech Stack**
+
 - Real-time data analysis
   - Apache Flink for capturing real-time feed from bike stations like station id, number of docks, bikes available, bikes booked and bikes 
-  disabled and partition by region id
-  - Store into relational database to maintain ACID properties as we don’t want  to show a booked bike as available
+  disabled and partitioned by region id
+  - Store into a relational database to maintain ACID properties as we don’t want  to show a booked bike as available
   Move to Apache Iceberg for analytics
 
 - Historical Data Analysis and Visualization
