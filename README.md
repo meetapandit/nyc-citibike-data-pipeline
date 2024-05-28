@@ -2,16 +2,19 @@
 
 # Streaming Pipeline for NYC Bike-sharing App and Analysis of User Activity
 
-# Objective: 
+## Objective: 
 The goal of this project is to share real-time information about citi bikes in NYC and also get historical trip data for analyzing trips and improving user experience for customers.
 
-# Motivation: 
+## Motivation: 
 For someone who enjoys all kinds of sports and outdoor activities and is a travel enthusiast, I am always on the lookout for activities that are easily accessible. Having this problem statement in mind I wanted to capture and publish data on bike-sharing apps across NYC as it is always bustling with locals and tourists alike.
 
-# Scope: 
+## Scope: 
 The analysis has 2 data sources
+
 **Part I: Real-time data**
+
 **Data:** I am using GBFS real-time feed from Citi Bikes NYC. GBFS stands for Global Bikeshare Feed Specification. It is a global standard for sharing system information about various bike stations across a country, city, and region along with details like the number of docks, availability of bikes at a given timestamp, station id, region id, plans and pricing
+
 **Objective:** Collect real-time data for designing the backend of the app for getting the dimensions like 
 Regions:  
 Station_status: 
@@ -44,7 +47,9 @@ name: **system_pricing_plans**,
 name: **system_alerts**,
 url: https://gbfs.lyft.com/gbfs/1.1/bkn/en/system_alerts.json
 
+
 **Part II: Historical trip data**
+
 **Data:** Citi bikes also shares downloadable CSV files of historical trips which goes back to 2013 when they started the bike-share service and collect data.
 Historical Citibike trip data : https://citibikenyc.com/system-data
 
@@ -65,7 +70,11 @@ Historical Citibike trip data : https://citibikenyc.com/system-data
   - Parquet compresses the data and Iceberg offers pointers to last updated file which saves full file scan and time travel
   - Aggregate data for weekly and monthly analysis of rides, popular stations, average distance traveled
   - Create Dash plots for interactive visualization
- 
+    
+## Conceptual Diagram
+
+![meetapandit_conceptual_modeling drawio](https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/ceb466f5-b424-4c8f-8bef-9acc74212421)
+
 **References:**
 Historical Citibike trip data : https://citibikenyc.com/system-data
 Realtime citi bike system data published as GBFS format. GBFS feed linked here: https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
