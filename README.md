@@ -59,7 +59,7 @@ Historical Citibike trip data : https://citibikenyc.com/system-data
 - What time of the day were the trips taken
 - What are the most popular stations?
   
-**Tech Stack**
+## Tech Stack
 
 - Real-time data analysis
   - Apache Flink for capturing real-time feed from bike stations like station id, number of docks, bikes available, bikes booked and bikes 
