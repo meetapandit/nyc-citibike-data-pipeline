@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: src_pricing_and_plan
+    description: "Trip pricing table"
+    columns:
+      - name: is_taxable
+        data_type: boolean
+        description: "If the price is taxable or not"
+
+      - name: name
+        data_type: varchar
+        description: "name of the service renting bikes"
+
+      - name: description
+        data_type: varchar
+        description: "description of fees and rates"
+
+      - name: price
+        data_type: float
+        description: "price to unlock a bike"
+
+      - name: price_per_min
+        data_type: float
+        description: "price per min added to the unlock price"
+
+      - name: plan_id
+        data_type: varchar
+        description: "name of the service renting bikes"
+
+      - name: currency
+        data_type: varchar
+        description: "Type co currency"
+
+      - name: curr_date
+        data_type: date
+        description: "current date when the data was last updated"

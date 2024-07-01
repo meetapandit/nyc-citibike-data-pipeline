@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: citibike
+    database: citibike
+    schema: raw
+    tables:
+      - name: trips
+      - name: bike_station_information
+      - name: bike_station_status
+      - name: pricing_and_plan
