@@ -1,0 +1,36 @@
+CREATE OR REPLACE TABLE CITIBIKE.RAW.BIKE_STATION_INFORMATION(
+                        window_start TIMESTAMP,
+                        station_id STRING,
+                        longitude DOUBLE,
+                        latitude DOUBLE,
+                        name STRING,
+                        region_id STRING,
+                        capacity INTEGER,
+                        last_updated_tmp TIMESTAMP,
+                        batch_run_date DATE)
+CLUSTER BY (batch_run_date);
+
+CREATE STAGE CITIBIKE.RAW.BIKE_STATION_INFORMATION_STAGE;
+
+
+create or replace TABLE CITIBIKE.RAW.BIKE_STATION_STATUS cluster by (batch_run_date)(
+    WINDOW_START TIMESTAMP_NTZ(9),
+    STATION_ID VARCHAR(16777216),
+    LEGACY_ID NUMBER(38,0),
+    NUM_EBIKES_AVAILABLE NUMBER(38,0),
+    NUM_BIKES_AVAILABLE NUMBER(38,0),
+    NUM_BIKES_DISABLED NUMBER(38,0),
+    IS_INSTALLED NUMBER(38,0),
+    IS_RETURNING NUMBER(38,0),
+    IS_RENTING NUMBER(38,0),
+    EIGHTD_HAS_AVAILABLE_KEYS BOOLEAN,
+    NUM_DOCKS_AVAILABLE NUMBER(38,0),
+    NUM_DOCKS_DISABLED NUMBER(38,0),
+    NUM_SCOOTERS_AVAILABLE NUMBER(38,0),
+    NUM_SCOOTERS_UNAVAILABLE NUMBER(38,0),
+    MAX_LAST_REPORTED TIMESTAMP_NTZ(9),
+    MAX_LAST_UPDATED TIMESTAMP_NTZ(9),
+    BATCH_RUN_DATE DATE
+);
+
+CREATE STAGE CITIBIKE.RAW.BIKE_STATION_STATUS_STAGE;
