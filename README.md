@@ -28,9 +28,11 @@ The processes have the following stages of data architecture:
 
 **Part I: Real-time Streaming Pipeline using Kafka, Databricks and Snowflake**
 
-[Part 1 Streaming Pipeline using Kafka, PySpark, Snowflake](https://medium.com/@meeta.pandit890/end-to-end-pyspark-databricks-kafka-dbt-snowflake-and-dagster-etl-pipeline-part-i-14dd7d91c4e1)
-[Part 2 Historical Trend Analysis using DBT, Dagster and Snowflake](https://medium.com/@aayushi.beniwal/end-to-end-pyspark-databricks-kafka-dbt-snowflake-and-dagster-etl-pipeline-part-ii-fd923bb35e4d)
-[Kaggle dataset](https://www.kaggle.com/datasets/aayushibeniwal/citibike-new-york-data)
+- [Medium Article Part 1 Streaming Pipeline using Kafka, PySpark, Snowflake](https://medium.com/@meeta.pandit890/end-to-end-pyspark-databricks-kafka-dbt-snowflake-and-dagster-etl-pipeline-part-i-14dd7d91c4e1)
+
+- [Medium Article Part 2 Historical Trend Analysis using DBT, Dagster and Snowflake](https://medium.com/@aayushi.beniwal/end-to-end-pyspark-databricks-kafka-dbt-snowflake-and-dagster-etl-pipeline-part-ii-fd923bb35e4d)
+
+- [Kaggle dataset](https://www.kaggle.com/datasets/aayushibeniwal/citibike-new-york-data)
 
 ## High-level Architecture Diagram
 
