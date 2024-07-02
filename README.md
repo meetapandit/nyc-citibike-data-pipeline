@@ -1,6 +1,9 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1lXY_Wlg)
 
 # Streaming Pipeline for NYC Bike-sharing App and Analysis of User Activity
+
+## Team members: Aayushi Beniwal, Meeta Pandit
+
 ## Objective: 
 As part of the intensive Data Engineering boot camp at DataExpert.io led by Zach Wilson, we designed a real-time streaming app and historical trend analysis of NYC Citibike's bike-share data for our capstone submission. We are thrilled to present the final product and our approach and design decisions we took along the way to make the design simple and intuitive yet utilizing modern data engineering practices. Please follow along as we walk you through the step-by-step process of achieving our final product.
 
