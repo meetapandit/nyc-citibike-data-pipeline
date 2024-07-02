@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: src_bike_station_information
+    description: "Bike station Information table"
+    columns:
+      - name: window_start
+        data_type: timestamp_ntz
+        description: "Timestamp column for micro-batchs"
+
+      - name: station_id
+        data_type: varchar
+        description: "Unique identifier for each station id"
+
+      - name: longitude
+        data_type: float
+        description: "Longitide of station"
+
+      - name: latitude
+        data_type: float
+        description: "Latitude of station"
+
+      - name: name
+        data_type: varchar
+        description: "Station name"
+
+      - name: region_id
+        data_type: varchar
+        description: "Unique identifier for a region where the station is located"
+
+      - name: capacity
+        data_type: number
+        description: "Total capacity of a station"
+
+      - name: last_updated_tmp
+        data_type: timestamp_ntz
+        description: "The timestamp when the data feed shared information"
+
+      - name: batch_run_date
+        data_type: date
+        description: "Current date when the job was updated"

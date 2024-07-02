@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_station
+    description: "Dimension table from src_trips having station information"
+    columns:
+      - name: station_id
+        data_type: number
+        description: "Unique identifier for station_id"
+        tests:
+          - not_null
+
+      - name: name
+        data_type: varchar
+        description: "Name of the station"
+        tests:
+          - not_null
+
+      - name: latitude
+        data_type: float
+        description: "Latitude of the station location"
+        tests:
+          - not_null
+
+      - name: longitude
+        data_type: float
+        description: "Longitude of the station information"
+        tests:
+          - not_null

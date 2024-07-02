@@ -1,0 +1,5 @@
+/logs/
+/venv/
+/dbt_dagster_project/tmp*/
+**/__pycache__/
+/dbt_dagster_project/logs/

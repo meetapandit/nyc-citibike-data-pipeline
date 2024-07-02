@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: src_bike_station_status
+    description: "Bike station status information"
+    columns:
+      - name: window_start
+        data_type: timestamp_ntz
+        description: "Timestamp for micro-batches"
+
+      - name: station_id
+        data_type: varchar
+        description: "UID for stations across NYC"
+
+      - name: legacy_id
+        data_type: number
+        description: "Unique identifier for stations"
+
+      - name: num_ebikes_available
+        data_type: number
+        description: "number of ebikes available at the station"
+
+      - name: num_bikes_available
+        data_type: number
+        description: number of mechanical bikes available at the station""
+
+      - name: num_bikes_disabled
+        data_type: number
+        description: " number of bikes not functional at a station"
+
+      - name: is_installed
+        data_type: number
+        description: "integer identifying if station is running and is able to rent esp required during sasonal shutdowns"
+
+      - name: is_returning
+        data_type: number
+        description: "integer identifying if station is running and can acceot returns during seasonal shutdowns"
+
+      - name: is_renting
+        data_type: number
+        description: "Is the stations currently open and renting bikes"
+
+      - name: eightd_has_available_keys
+        data_type: boolean
+        description: "determines of a key dropbox is available"
+
+      - name: num_docks_available
+        data_type: number
+        description: "number of docks functional at a station"
+
+      - name: num_docks_disabled
+        data_type: number
+        description: "number of docks not functional at a station"
+
+      - name: num_scooters_available
+        data_type: number
+        description: "number of scooters available"
+
+      - name: num_scooters_unavailable
+        data_type: number
+        description: "number of scooters unavailable"
+
+      - name: max_last_reported
+        data_type: timestamp_ntz
+        description: "the most recent timestamp when the station shared information"
+
+      - name: max_last_updated
+        data_type: timestamp_ntz
+        description: "the most recent timestamp when the data feed was updated"
+
+      - name: batch_run_date
+        data_type: date
+        description: "the date when the job last ran"
