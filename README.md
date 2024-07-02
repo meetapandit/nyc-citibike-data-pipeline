@@ -1,7 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1lXY_Wlg)
 
 # Streaming Pipeline for NYC Bike-sharing App and Analysis of User Activity
-
 ## Objective: 
 As part of the intensive Data Engineering boot camp at DataExpert.io led by Zach Wilson, we designed a real-time streaming app and historical trend analysis of NYC Citibike's bike-share data for our capstone submission. We are thrilled to present the final product and our approach and design decisions we took along the way to make the design simple and intuitive yet utilizing modern data engineering practices. Please follow along as we walk you through the step-by-step process of achieving our final product.
 
@@ -1061,3 +1060,9 @@ DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1 dagster dev
 We will continue our work on the dagster UI at [http://localhost:3000/](http://localhost:3000) 
 
 Run the materialize all to run the models.
+
+
+### Future Scope
+1) It’s considered best practice to follow Medallion Architecture ( Delta Architecture ) to organize data in three layers/schemas — Bronze, Silver, Gold. We can represent these layers in the form of Snowflake Schemas in dev and prod in future.
+
+2. Implement the CI/CD using the Dagster Prod to replicate the production environment.
