@@ -1,7 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1lXY_Wlg)
 
 # Streaming Pipeline for NYC Bike-sharing App and Analysis of User Activity
-
 ## Objective: 
 The goal of this project is to share real-time information about citi bikes in NYC and also get historical trip data for analyzing trips and improving user experience for customers.
 
@@ -977,3 +976,9 @@ DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1 dagster dev
 We will continue our work on the dagster UI at [http://localhost:3000/](http://localhost:3000) 
 
 Run the materialize all to run the models.
+
+
+### Future Scope
+1) It’s considered best practice to follow Medallion Architecture ( Delta Architecture ) to organize data in three layers/schemas — Bronze, Silver, Gold. We can represent these layers in the form of Snowflake Schemas in dev and prod in future.
+
+2. Implement the CI/CD using the Dagster Prod to replicate the production environment.
