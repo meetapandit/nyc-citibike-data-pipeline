@@ -129,7 +129,45 @@ The processes have the following stages of data architecture:
            - Failure Recovery: is managed by configuring a replication factor of 3 for Lafka brokers and acks which denotes message delivery guarantees are set to all with a trade-off of higher latency vs a guaranteed receipt that the message is delivered to all in-sync replicas.
            - On the Databricks side, failure is handled using checkpointing and late-arriving events are handled by watermark.        
 
+- Idempotent Pipelines:
+	    - From Kafka 3.0, idempotence is set to true which supports exactly-once semantics which guarantees that no rows are missing or duplicated in the sink after recovering from failure.
+            - This is otherwise a huge concern for streaming pipelines as non-idempotent pipelines create silent failures that are not caught easily during backfilling. These uncaught records can cause 
+               cascading failures in downstream pipelines as it does not cause any alarm bells to ring and bad data can reach production without notice
+  - Data Contracts:
+	    - Kafka guarantees data contracts by storing a unique identifier for each schema in the schema registry
+            - This schema id is part of the metadata of the message subscribed to by the consumer application
+            - Thus if the schema at the data source changes without warning Kafka compares the new schema with the existing schema, adds a new schema to the schema registry and the records with the 
+              changed schema can be handled by the client application using techniques like Dead Letter (DL) queue and the pipeline runs without failure
+            - The delta lakehouse architecture which uses unity catalog for file metadata also supports schema evolution
+    
+    - Data Storage
+	    - Selected Snowflake for storage as it also offers support for Spark for analysts to explore the datasets and also has Streamlit integrated into the platform which allows creating interactive web applications with ease
+            - Created 2 tables and partitioned them by batch_run_date.
+            - Created a private key. Follow the link to configure private key and to set private key in Snowflake follow this Youtube link
+       
+       <img width="1179" alt="create_private_key_snowflake" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/40b1b189-fb8c-4001-8c2c-80424b6ff06d">
+       
+            - Created a for_each_batch function to write the micro-batches to the tables
+      
+      <img width="1179" alt="snowflake_conn_options_and_foreachBatch" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/d21e6701-6bc3-4add-a4fc-cfdcd21d742b">
 
+            - The challenge was without foreachBatch() the micro-batches were not utilized as the writeStream() was not using the micro-batches
+            - The for_each_batch function reduced the load on the executors and effectively processed each micro-batch
+
+<img width="1179" alt="write_stream_snowflake" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/01575f89-a11e-4c45-a23b-e393976ed2b5">
+
+- Data Visualization
+
+  <img width="1179" alt="streamlit_viz_map_stations" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/8982365a-fe18-4009-9779-a0cd31aeed5d">
+
+             - Snowflake offers support to Streamlit which is a Python library for interactive web application
+             - The audience for this dashboard was intended to manage the distribution of bikes across all the stations and ensure that the most popular bike stations have enough bikes with adequate power 
+               in all bikes at the busiest times of the day.
+
+<img width="1402" alt="streamlit_dist_of_ebikes_by_stations" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/66fe1aff-ce98-477c-bea0-cc832337b50c">
+
+             - This operational dashboard can be paired with the analytics dashboard showing descriptive statistics to get insights from historical data on seasonality to increase or reduce bikes at a 
+               station when required.
 
 **Part II: Historical trip data**
 
@@ -141,20 +179,6 @@ Historical Citibike trip data : https://citibikenyc.com/system-data
 - Avg trip per day/week/month? Depending on who is the audience for the visualization
 - What time of the day were the trips taken
 - What are the most popular stations?
-  
-## Tech Stack
-
-- Real-time data analysis
-  - Apache Flink for capturing real-time feed from bike stations like station id, number of docks, bikes available, bikes booked and bikes 
-  disabled and partitioned by region id
-  - Store into a relational database to maintain ACID properties as we don’t want  to show a booked bike as available
-  Move to Apache Iceberg for analytics
-
-- Historical Data Analysis and Visualization
-  - Convert csv to Parquet files in Apache Iceberg as 
-  - Parquet compresses the data and Iceberg offers pointers to last updated file which saves full file scan and time travel
-  - Aggregate data for weekly and monthly analysis of rides, popular stations, average distance traveled
-  - Create Dash plots for interactive visualization
     
 ## Conceptual Diagram
 
@@ -1064,5 +1088,8 @@ Run the materialize all to run the models.
 
 ### Future Scope
 1) It’s considered best practice to follow Medallion Architecture ( Delta Architecture ) to organize data in three layers/schemas — Bronze, Silver, Gold. We can represent these layers in the form of Snowflake Schemas in dev and prod in future.
-
 2. Implement the CI/CD using the Dagster Prod to replicate the production environment.
+3. In the interest of time, I used managed services for Kafka, Spark and Snowflake that can be an overhead to manage cloud bills
+4. So as a next step, I will be replacing these services with Docker and scaling it to use only a single cloud offering using the Kubernetes cluster
+5. As this is a prototype version, I will move away from Databricks managed file system to mounting volume in external storage for more secure access to data and credentials
+6. Integrate Real-time and historical data in Streamlit to combine real-time insights with historical trends to provide better customer service and elevate user experience
