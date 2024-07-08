@@ -114,7 +114,6 @@ The processes have the following stages of data architecture:
            - This way the 2 API feeds are producing data for 2 topics in Kafka
 
 - Data Transformation
-  
       - Kafka acts as a transient storage and it is recommended to have a retention policy of upto 7 to 14 days until the data is moved to a lakehouse where it can be stored as-is
         without applying any business logic.
       - Selected Databricks as the lakehouse and transformation layer using Delta tables as lakehouse and spark for data processing. Databricks is founded by the creators of Apache
@@ -126,14 +125,12 @@ The processes have the following stages of data architecture:
       - The following StructType defined the schema for the messages (values) flowing through Kafka along with Kafka schema
 
 <img width="1155" alt="read_from_kafka_message_schema" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/1e80e0d7-726c-494d-9379-5ff811942671">
-
       - The transformation was done by exploding the outer stations list which created rows of key-value pairs
       - Now, these rows could be flattened by accessing the keys and creating columns for each key in the map
       - As the incoming rate of events was < 1 min per message from every station there was an opportunity to store only the messages with the greatest timestamp using the 
       	last_updated field
 
 <img width="1194" alt="read_from_kafka_explode_struct_type" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/39450eec-671b-4fc7-b6a4-37c5fa4f0016">
-
       - As the data source was streaming it was important to create micro-batches to prevent overwhelming the executors.
       - Processed the incoming streaming data in micro-batch windows of 10 minutes which forms batches of data before sending data to executors for processing.
       - This way the Spark resource manager gets time between incoming messages and can manage data distribution of work among executors
