@@ -44,30 +44,30 @@ The processes have the following stages of data architecture:
 
 - Data Sources: GBFS data feed for real-time data access
   
-      - Station_Status: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json)
+  - Station_Status: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json)
   
-      - Station_Information: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json)
+  - Station_Information: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json)
 
 - Data Staging: Apache Kafka for distributed, fault-tolerant message queuing to retain messages even after consumption, unlike others like RabbitMQ which deletes messages immediately after consumption. Kafka is reliable and offers message delivery guarantees and idempotency through config settings. We used a Kafka cluster managed by Confluent (the company founded by the creators of Kafka)
       - Set up Kafka Cluster in Confluent:
   
 <img width="791" alt="kafka_cluster" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/9337c393-67ef-4277-9f4d-4077cc1bad91">
 
-      - Create topics:
+- Create topics:
       
 <img width="1428" alt="kafka_topics" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/527d707c-fe2f-4491-a1fa-cde0392dca2d">
 
 - Data Transformation: Pyspark in Databricks hosted on GCP. Databricks is a managed Spark cluster environment that uses compute resources from GCP. The Databricks-managed Spark cluster can achieve higher parallelism using 1 driver and dynamically adding executors from 1 to 8.
   
-      - Create a Databricks account and file systems
+  - Create a Databricks account and file systems
   
   <img width="1432" alt="cloud_storage_unity_catalog_buckets" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/89653b3a-3b36-4fda-b1a3-ef0139c928f3">
 
-      - Create Workspace
+  - Create Workspace
 
   <img width="1432" alt="create_workspace" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/562c3356-64c5-4946-b621-c4903fa94ae2">
 
-      - Cluster Setup
+  - Cluster Setup
   
 <img width="1432" alt="cluster_created" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/deffd37d-93fe-4136-9794-30f04780ea7b">
 
@@ -165,12 +165,12 @@ The processes have the following stages of data architecture:
        
        <img width="1179" alt="create_private_key_snowflake" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/40b1b189-fb8c-4001-8c2c-80424b6ff06d">
        
-            - Created a for_each_batch function to write the micro-batches to the tables
+    - Created a for_each_batch function to write the micro-batches to the tables
       
       <img width="1179" alt="snowflake_conn_options_and_foreachBatch" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/d21e6701-6bc3-4add-a4fc-cfdcd21d742b">
 
-            - The challenge was without foreachBatch() the micro-batches were not utilized as the writeStream() was not using the micro-batches
-            - The for_each_batch function reduced the load on the executors and effectively processed each micro-batch
+    - The challenge was without foreachBatch() the micro-batches were not utilized as the writeStream() was not using the micro-batches
+    - The for_each_batch function reduced the load on the executors and effectively processed each micro-batch
 
 <img width="1179" alt="write_stream_snowflake" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/01575f89-a11e-4c45-a23b-e393976ed2b5">
 
