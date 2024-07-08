@@ -44,7 +44,9 @@ The processes have the following stages of data architecture:
 ## Tech Stack and Config Details
 
 - Data Sources: GBFS data feed for real-time data access
+  
       - Station_Status: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_status.json)
+  
       - Station_Information: [https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json](https://gbfs.lyft.com/gbfs/1.1/bkn/en/station_information.json)
 
 - Data Staging: Apache Kafka for distributed, fault-tolerant message queuing to retain messages even after consumption, unlike others like RabbitMQ which deletes messages immediately after consumption. Kafka is reliable and offers message delivery guarantees and idempotency through config settings. We used a Kafka cluster managed by Confluent (the company founded by the creators of Kafka)
