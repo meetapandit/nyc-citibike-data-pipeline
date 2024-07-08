@@ -104,18 +104,22 @@ The processes have the following stages of data architecture:
       - The 2 data feeds shared by NYC Citibike under GBFS standards are JSON API with open data contract collecting data from 1500+ bike stations across NYC every minute.
       - Data Volume Estimates:
            - 1500 * 1440 (total minutes per day) = 2,160,000 rows/ day
-           - The estimated row size of station_status is 134 KB. This is calculated taking into account the datatypes of each column and finding the number of blocks of memory required to store each column              in bytes and convert it into KB
+           - The estimated row size of station_status is 134 KB. This is calculated taking into account the datatypes of each column and finding the number of blocks of memory
+             required to store each column in bytes and convert it into KB
            - Multiply total rows * size of each row: 2.16MM * 134 KB = 289.44 MB
            - Each table stores 289 MB of data daily, continuously growing as more stations are launched and more bikes and docks are dispatched
-           - To efficiently serve the velocity and volume of data I chose Apache Kafka as an intermediate storage layer and selected Confluent's managed Kafka cluster as a staging layer
+           - To efficiently serve the velocity and volume of data I chose Apache Kafka as an intermediate storage layer and selected Confluent's managed Kafka cluster as a staging
+             layer
            - Created 2 topics one for each API feed station_status and station_information with default 6 partitions with the key as null and value as the incoming message
            - As the key is null, Kafka selects a default partitioner to split the message into topic partitions based on a round-robin approach
            - This way the 2 API feeds are producing data for 2 topics in Kafka
 
 - Data Transformation
-      - Kafka acts as a transient storage and it is recommended to have a retention policy of upto 7 to 14 days until the data is moved to a lakehouse where it can be stored as-is without applying any              business logic.
-      - Selected Databricks as the lakehouse and transformation layer using Delta tables as lakehouse and spark for data processing. Databricks is founded by the creators of Apache Spark and has native     
-        support for Spark
+  
+      - Kafka acts as a transient storage and it is recommended to have a retention policy of upto 7 to 14 days until the data is moved to a lakehouse where it can be stored as-is
+        without applying any business logic.
+      - Selected Databricks as the lakehouse and transformation layer using Delta tables as lakehouse and spark for data processing. Databricks is founded by the creators of Apache
+        Spark and has native support for Spark
       - Used dataframes with Spark structured streaming for consuming the real-time messages from Kafka for processing in Spark
       - Created a notebook and connected to Kafka cluster and subscribed to the 2 topics
       - Both data feeds were JSON APIs and had nested objects with lists of dictionaries
@@ -139,7 +143,7 @@ The processes have the following stages of data architecture:
  - Data Validation
       - Data Quality is the most critical step in any data architecture and it is even more critical and challenging to achieve in a real-time data streaming pipeline as the job is always running and if important decision decisions about failure recovery, idempotency, load balancing, and data contracts. We ensured the following
         
-           - Failure Recovery: is managed by configuring a replication factor of 3 for Lafka brokers and acks which denotes message delivery guarantees are set to all with a trade-
+      - Failure Recovery: is managed by configuring a replication factor of 3 for Lafka brokers and acks which denotes message delivery guarantees are set to all with a trade-
              off of higher latency vs a guaranteed receipt that the message is delivered to all in-sync replicas.
            - On the Databricks side, failure is handled using checkpointing and late-arriving events are handled by watermark.        
 
