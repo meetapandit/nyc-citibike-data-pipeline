@@ -57,6 +57,7 @@ The processes have the following stages of data architecture:
 <img width="1428" alt="kafka_topics" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/527d707c-fe2f-4491-a1fa-cde0392dca2d">
 
 - Data Transformation: Pyspark in Databricks hosted on GCP. Databricks is a managed Spark cluster environment that uses compute resources from GCP. The Databricks-managed Spark cluster can achieve higher parallelism using 1 driver and dynamically adding executors from 1 to 8.
+  
       - Create a Databricks account and file systems
   
   <img width="1432" alt="cloud_storage_unity_catalog_buckets" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/89653b3a-3b36-4fda-b1a3-ef0139c928f3">
@@ -123,7 +124,8 @@ The processes have the following stages of data architecture:
 
       - The transformation was done by exploding the outer stations list which created rows of key-value pairs
       - Now, these rows could be flattened by accessing the keys and creating columns for each key in the map
-      - As the incoming rate of events was < 1 min per message from every station there was an opportunity to store only the messages with the greatest timestamp using the last_updated field
+      - As the incoming rate of events was < 1 min per message from every station there was an opportunity to store only the messages with the greatest timestamp using the 
+      	last_updated field
 
 <img width="1194" alt="read_from_kafka_explode_struct_type" src="https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/39450eec-671b-4fc7-b6a4-37c5fa4f0016">
 
@@ -133,26 +135,31 @@ The processes have the following stages of data architecture:
       - Added batch_run_date which would act as a partition key to optimize retrieval and query performance when filtered against the date field
 
  - Data Validation
-      - Data Quality is the most critical step in any data architecture and it is even more critical and challenging to achieve in a real-time data streaming pipeline as the job is always running and if            important decision decisions about failure recovery, idempotency, load balancing, and data contracts. We ensured the following
+      - Data Quality is the most critical step in any data architecture and it is even more critical and challenging to achieve in a real-time data streaming pipeline as the job is always running and if important decision decisions about failure recovery, idempotency, load balancing, and data contracts. We ensured the following
         
-           - Failure Recovery: is managed by configuring a replication factor of 3 for Lafka brokers and acks which denotes message delivery guarantees are set to all with a trade-off of higher latency vs a guaranteed receipt that the message is delivered to all in-sync replicas.
+           - Failure Recovery: is managed by configuring a replication factor of 3 for Lafka brokers and acks which denotes message delivery guarantees are set to all with a trade-
+             off of higher latency vs a guaranteed receipt that the message is delivered to all in-sync replicas.
            - On the Databricks side, failure is handled using checkpointing and late-arriving events are handled by watermark.        
 
-- Idempotent Pipelines:
-	    - From Kafka 3.0, idempotence is set to true which supports exactly-once semantics which guarantees that no rows are missing or duplicated in the sink after recovering from failure.
-            - This is otherwise a huge concern for streaming pipelines as non-idempotent pipelines create silent failures that are not caught easily during backfilling. These uncaught records can cause 
+      - Idempotent Pipelines:
+	    - From Kafka 3.0, idempotence is set to true which supports exactly-once semantics which guarantees that no rows are missing or duplicated in the sink after recovering
+              from failure.
+            - This is otherwise a huge concern for streaming pipelines as non-idempotent pipelines create silent failures that are not caught easily during backfilling. These
+              uncaught records can cause 
                cascading failures in downstream pipelines as it does not cause any alarm bells to ring and bad data can reach production without notice
-  - Data Contracts:
+      - Data Contracts:
 	    - Kafka guarantees data contracts by storing a unique identifier for each schema in the schema registry
             - This schema id is part of the metadata of the message subscribed to by the consumer application
-            - Thus if the schema at the data source changes without warning Kafka compares the new schema with the existing schema, adds a new schema to the schema registry and the records with the 
+            - Thus if the schema at the data source changes without warning Kafka compares the new schema with the existing schema, adds a new schema to the schema registry and the
+              records with the 
               changed schema can be handled by the client application using techniques like Dead Letter (DL) queue and the pipeline runs without failure
             - The delta lakehouse architecture which uses unity catalog for file metadata also supports schema evolution
     
-    - Data Storage
-	    - Selected Snowflake for storage as it also offers support for Spark for analysts to explore the datasets and also has Streamlit integrated into the platform which allows creating interactive web applications with ease
-            - Created 2 tables and partitioned them by batch_run_date.
-            - Created a private key. Follow the link to configure private key and to set private key in Snowflake follow this Youtube link
+- Data Storage
+    - Selected Snowflake for storage as it also offers support for Spark for analysts to explore the datasets and also has Streamlit integrated into the platform which allows
+      creating interactive web applications with ease
+    - Created 2 tables and partitioned them by batch_run_date.
+    - Created a private key. Follow the link to configure private key and to set private key in Snowflake follow this Youtube link
        
        <img width="1179" alt="create_private_key_snowflake" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/40b1b189-fb8c-4001-8c2c-80424b6ff06d">
        
@@ -169,18 +176,18 @@ The processes have the following stages of data architecture:
 
   <img width="1179" alt="streamlit_viz_map_stations" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/8982365a-fe18-4009-9779-a0cd31aeed5d">
 
-             - Snowflake offers support to Streamlit which is a Python library for interactive web application
-             - The audience for this dashboard was intended to manage the distribution of bikes across all the stations and ensure that the most popular bike stations have enough bikes with adequate power 
-               in all bikes at the busiest times of the day.
+  - Snowflake offers support to Streamlit which is a Python library for interactive web application
+  - The audience for this dashboard was intended to manage the distribution of bikes across all the stations and ensure that the most popular bike stations have enough
+  bikes with adequate power in all bikes at the busiest times of the day.
 
 <img width="1402" alt="streamlit_dist_of_ebikes_by_stations" src="https://github.com/DataExpert-ZachWilson-V4/capstone-citibike-nyc-data-pipeline/assets/15186489/66fe1aff-ce98-477c-bea0-cc832337b50c">
 
-             - This operational dashboard can be paired with the analytics dashboard showing descriptive statistics to get insights from historical data on seasonality to increase or reduce bikes at a 
-               station when required.
+  - This operational dashboard can be paired with the analytics dashboard showing descriptive statistics to get insights from historical data on seasonality to increase or reduce
+    bikes at a station when required.
 
 **Part II: Historical trip data**
 
-**Data:** Citi bikes also shares downloadable CSV files of historical trips which goes back to 2013 when they started the bike-share service and collect data.
+**Data:** Citi bikes also shares downloadable CSV files of historical trips which go back to 2013 when the bike-share service was started.
 Historical Citibike trip data : https://citibikenyc.com/system-data
 
 **Objective:** Analyze user activity across all stations to find out interesting insights like 
@@ -194,8 +201,8 @@ Historical Citibike trip data : https://citibikenyc.com/system-data
 ![meetapandit_conceptual_modeling drawio](https://github.com/DataExpert-ZachWilson-V4/capstone-project-meeta-p/assets/15186489/ceb466f5-b424-4c8f-8bef-9acc74212421)
 
 **References:**
-Historical Citibike trip data : https://citibikenyc.com/system-data
-Realtime citi bike system data published as GBFS format. GBFS feed linked here: https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
+Historical Citibike trip data: https://citibikenyc.com/system-data
+Realtime citi bike system data published in GBFS format. GBFS feed linked here: https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
 
 # Introduction and Environment Setup
 
@@ -204,15 +211,15 @@ Realtime citi bike system data published as GBFS format. GBFS feed linked here: 
 #### Step 1: Snowflake free account setup
 Create Snowflake 30 days Free Trial Account from your personal email [https://signup.snowflake.com/]. For the capstone we have created Business Critical Snowflake and linked it to GCP as the cloud service platform to bring in raw data.
 
-#### Step 2: Roles, Warehouses and Users setup
-##### Role Based Access Control (RBAC) in Snowflake:
-Snowflake follows roles encapsulation/ hierarchy which means ACCOUNTADMIN encapsulates all the privileges on the roles under it and so on. The role classification for this project is divided into 2 main roles DBT_ANALYTICS_ADMIN_ROLE and DATA_ADMIN_ROLE just to show how different roles can be allocated to different users in an organization. Now depending on each user’s designation in an organization the role is assigned, let’s say for example User A is assigned Data Engineer role based on their designation, similarly User B is assigned Data Analyst role to maintain data governance policies. Note that Snowflake users can hold multiple roles but only one role can be active per session for a user. 
+#### Step 2: Roles, Warehouses, and Users Setup
+##### Role-Based Access Control (RBAC) in Snowflake:
+Snowflake follows roles encapsulation/ hierarchy which means ACCOUNTADMIN encapsulates all the privileges of the roles under it and so on. The role classification for this project is divided into 2 main roles DBT_ANALYTICS_ADMIN_ROLE and DATA_ADMIN_ROLE just to show how different roles can be allocated to different users in an organization. Now depending on each user’s designation in an organization the role is assigned, let’s say for example User A is assigned Data Engineer role based on their designation, similarly User B is assigned Data Analyst role to maintain data governance policies. Note that Snowflake users can hold multiple roles but only one role can be active per session for a user. 
 
 [https://docs.snowflake.com/en/user-guide/security-access-control-overview]
 
 
 ##### Warehouse: 
-Snowflake contains options for various warehouse sizes. It also supports default warehouse for users. Therefore, following the best practices we build warehouses based on roles to ensure appropriate access control, monitoring and resource allocation. The ANALYTICS_WH for the DBT_ANALYTICS_ADMIN_ROLE and ETL_WH for DATA_ADMIN_ROLE both the warehouses being x-small in size.
+Snowflake contains options for various warehouse sizes. It also supports default warehouse for users. Therefore, following the best practices we build warehouses based on roles to ensure appropriate access control, monitoring, and resource allocation. The ANALYTICS_WH for the DBT_ANALYTICS_ADMIN_ROLE and ETL_WH for DATA_ADMIN_ROLE both the warehouses being x-small in size.
 
 [https://docs.snowflake.com/en/user-guide/warehouses-overview]
 
